@@ -1,9 +1,15 @@
 var gulp = require('gulp');
-var de = require('del');
+var del = require('del');
 var webpack = require('webpack-stream');
 var webpackConfig = require('./webpack.config.js');
 var nodemon = require('gulp-nodemon');
 var path = require('path');
+
+console.log('gulp start');
+
+gulp.task('default', function() {
+	console.log('Default task called');
+});
 
 gulp.task('clean:build', function() {
 	del('./public/js/*');

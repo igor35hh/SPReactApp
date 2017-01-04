@@ -1,8 +1,8 @@
-//import express from 'express';
-//import path from 'path';
+import express from 'express';
+import path from 'path';
 
-let express = require('express');
-let path = require('path');
+//let express = require('express');
+//let path = require('path');
 
 const app = express();
 
