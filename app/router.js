@@ -1,13 +1,14 @@
 import React from 'react';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 
-import MainLayout from './components/main-layout';
-import SearchLayout from './components/search-layout';
+import MainLayout from './components/layouts/main-layout';
+import SearchLayout from './components/layouts/search-layout';
 
 import Home from './components/home';
-import UserList from './components/user-list';
-import UserProfile from './components/user-profile';
-import WidgetList from './components/widget-list';
+
+import UserListContainer from './components/containers/user-list-container';
+import UserProfileContainer from './components/containers/user-profile-container';
+import WidgetListContainer from './components/containers/widget-list-container';
 
 //let path = require('path');
 
@@ -18,14 +19,14 @@ export default (
 
 			<Route path="users">
 				<Route component={SearchLayout}>
-					<IndexRoute component={UserProfile} />
+					<IndexRoute component={UserListContainer} />
 				</Route>
-				<Route path=":userId" component={UserProfile} />
+				<Route path=":userId" component={UserProfileContainer} />
 			</Route>
 
 			<Route path="widgets">
 				<Route component={SearchLayout}>
-					<IndexRoute component={WidgetList} />
+					<IndexRoute component={WidgetListContainer} />
 				</Route>
 			</Route>
 

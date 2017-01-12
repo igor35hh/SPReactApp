@@ -1,15 +1,119 @@
-.app {
+
+html {
+	box-sizing: border-box;
+	color: #222;
+	font: 12pt Arial;
+}
+
+*, *::before, *::after {
+	box-sizing: inherit;
+	color: inherit;
+}
+
+body {
+	margin: 3rem;
+}
+
+a {
+	color: #2297D1;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+* < h1 {
+	margin-top: 0;
+}
+
+button {
+	border: none;
+	border-radius: 3px;
+	background-color: #2297D1;
+	font-size: 0.7em;
+	padding: 0.5em 1em;
+	cursor: pointer;
+	color: #fff;
+}
+
+button.delete {
+	background-color: #B83B3B;
+}
+
+.data-list-item {
+	padding: 0.6em;
+	display: flex;
+	border-bottom: 1px solid #bbb;
+}
+
+.data-list-item .details {
+	flex: 1;
+}
+
+.user-profile {
 	display: flex;
 }
 
-aside.primary-aside {
-	width: 200px;
+.user-profile img {
+	display: block;
+	width: 100px;
+	height: 100px;
 }
 
-aside.primary-aside a.active {
-	font-weight: bold;
+.user-profile .details {
+	flex: 1;
+	margin-left: 1em;
+}
+
+.user-profile h1 {
+	margin: 0;
+}
+
+.user-profile .repos {
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+}
+
+.user-profile .repos li {
+	float: left;
+	width: 250px;
+	margin-right: 2em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.app {
+	display: flex;
+	min-width: 800px;
+}
+
+.primary-aside {
+	width: 12rem;
+}
+
+.primary-aside ul {
+	list-style: none;
+}
+
+.primary-aside a {
+	display: block;
+	padding: 0.6em;
+}
+
+.primary-aside a.active {
+	color: #fff;
+	background-color: #2297D1;
 }
 
 main {
 	flex: 1;
+	margin-left: 2em;
+}
+
+.search-header, .search-footer {
+	font-weight: bold;
+}
+
+.search-results {
+	margin: 1em 0;
 }
