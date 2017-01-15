@@ -1,34 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import UserProfile from '../views/user-profile';
 import * as userApi from '../../api/user-api';
 
 const UserProfileContainer = React.createClass({
-	getInitialState: function() {
-		return {
-			name: null,
-			imageUrl: null,
-			twitter: null,
-			workOn: null,
-			repos: []
-		}
-	},
 	componentDidMount: function() {
 		let userId = this.props.params.userId;
-		userApi.getProfile(userId).then(profile => {
-			this.setState({
-				name: profile.name,
-				imageUrl: profile.imageUrl,
-				twitter: profile.twitter,
-				worksOn: profile.worksOn,
-				repos: profile.repos
-			});
-		});
+		userApi.getProfile(userId);
 	},
 	render: function() {
 		return (
-			<UserProfile {...this.state} />
+			<UserProfile {...this.props.profile} />
 		);
 	}
 });
 
-export default UserProfileContainer;
+const mapStateToProps = function(store) {
+	return {
+		profile: store.userState.userProfile
+	};
+};
+
+export default connect(mapStateToProps)(UserProfileContainer);

@@ -24,6 +24,18 @@ a {
 	margin-top: 0;
 }
 
+input[type="text"] {
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	font-size: 0.7em;
+	padding: 0.5em 1em;
+}
+
+input[type="text"]:focus {
+	outline: none;
+	border-color: #2297D1;
+}
+
 button {
 	border: none;
 	border-radius: 3px;
@@ -36,6 +48,14 @@ button {
 
 button.delete {
 	background-color: #B83B3B;
+}
+
+form.search {
+	margin-top: 1em;
+}
+
+form.search button {
+	margin-left: 0.5em;
 }
 
 .data-list-item {
@@ -93,6 +113,7 @@ button.delete {
 
 .primary-aside ul {
 	list-style: none;
+	margin: 0;
 }
 
 .primary-aside a {

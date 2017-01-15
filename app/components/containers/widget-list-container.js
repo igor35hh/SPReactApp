@@ -1,30 +1,26 @@
 import React from 'react';
-import _ from 'lodash';
+import { connect } from 'react-redux';
 import WidgetList from '../views/widget-list';
 import * as widgetApi from '../../api/widget-api';
+import store from '../../store';
+import { loadSearchLayout } from '../../actions/search-layout-actions';
 
 const WidgetListContainer = React.createClass({
-	getInitialState: function() {
-		return {
-			widgets: []
-		}
-	},
 	componentDidMount: function() {
-		widgetApi.getWidgets().then(widgets => {
-			this.setState({widgets: widgets});
-		});
-	},
-	deleteWidget: function(widgetId) {
-		widgetApi.deleteWidget(widgetId).then(() => {
-			const newWidgets = _.filter(this.state.widgets, widget => widget.id != widgetId);
-			this.setState({widgets: newWidgets});
-		});
+		widgetApi.getWidgets();
+		store.dispatch(loadSearchLayout('widgets', 'Widgets Results'));
 	},
 	render: function() {
 		return (
-			<WidgetList widgets={this.state.widgets} deleteWidget={this.deleteWidget} />
+			<WidgetList widgets={this.props.widgets} deleteWidget={widgetApi.deleteWidget} />
 		);
 	}
 });
 
-export default WidgetListContainer;
+const mapStateToProps = function(store) {
+	return {
+		widgets: store.widgetState.widgets
+	};
+};
+
+export default connect(mapStateToProps)(WidgetListContainer);

@@ -2,7 +2,7 @@ import React from 'react';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 
 import MainLayout from './components/layouts/main-layout';
-import SearchLayout from './components/layouts/search-layout';
+import SearchLayoutContainer from './components/containers/search-layout-container';
 
 import Home from './components/home';
 
@@ -18,14 +18,14 @@ export default (
 			<Route path="/" component={Home} />
 
 			<Route path="users">
-				<Route component={SearchLayout}>
+				<Route component={SearchLayoutContainer}>
 					<IndexRoute component={UserListContainer} />
 				</Route>
 				<Route path=":userId" component={UserProfileContainer} />
 			</Route>
 
 			<Route path="widgets">
-				<Route component={SearchLayout}>
+				<Route component={SearchLayoutContainer}>
 					<IndexRoute component={WidgetListContainer} />
 				</Route>
 			</Route>

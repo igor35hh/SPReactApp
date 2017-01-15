@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
 }));
 
 app.get('*', function(req, res, next) {
-	console.log('Request: [GET}', req.originalUrl);
+	console.log('Request: [GET]', req.originalUrl);
 	res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
 	next(err);
 });
 
-app.use(function(req, res, next) {
+app.use(function(err, req, res, next) {
 	res.sendStatus(err.status || 500);
 });
 

@@ -1,30 +1,26 @@
 import React from 'react';
-import _ from 'lodash';
+import { connect } from 'react-redux';
 import UserList from '../views/user-list';
 import * as userApi from '../../api/user-api';
+import store from '../../store';
+import { loadSearchLayout } from '../../actions/search-layout-actions';
 
 const UserListContainer = React.createClass({
-	getInitialState: function() {
-		return {
-			users: []
-		}
-	},
 	componentDidMount: function() {
-		userApi.getUsers().then(users => {
-			this.setState({users: users})
-		});
-	},
-	deleteUser: function(userId) {
-		userApi.deleteUser(userId).then(() => {
-			const newUsers = _.filter(this.state.users, user => user.id != userId);
-			this.setState({users: newUsers})
-		});
+		userApi.getUsers();
+		store.dispatch(loadSearchLayout('users', 'User Results'));
 	},
 	render: function() {
 		return (
-			<UserList users={this.state.users} deleteUser={this.deleteUser} />
+			<UserList users={this.props.users} deleteUser={userApi.deleteUser} />
 		);
 	}
 });
 
-export default UserListContainer;
+const mapStateToProps = function(store) {
+	return {
+		users: store.userState.users
+	};
+};
+
+export default connect(mapStateToProps)(UserListContainer);

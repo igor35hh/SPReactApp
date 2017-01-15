@@ -1,11 +1,26 @@
 import axios from 'axios';
+import store from '../store';
+import { getUsersSuccess, deleteUserSuccess, userProfileSuccess } from '../actions/user-actions';
 
 export function getUsers() {
-	return axios.get('http://localhost:3001/users').then(response => response.data);
+	return axios.get('http://localhost:3001/users').then(response => {
+		store.dispatch(getUsersSuccess(response.data));
+		return response;
+	});
+}
+
+export function searchUsers(query='') {
+	return axios.get('http://localhost:3001/users?q='+query).then(response => {
+		store.dispatch(getUsersSuccess(response.data));
+		return response;
+	});
 }
 
 export function deleteUser(userId) {
-	return axios.delete('http://localhost:3001/users/'+userId);
+	return axios.delete('http://localhost:3001/users/'+userId).then(response => {
+		store.dispatch(deleteUserSuccess(userId));
+		return response;
+	});
 }
 
 export function getProfile(userId) {
@@ -26,7 +41,9 @@ export function getProfile(userId) {
 			profile.imageUrl = githubProfile.avatar_url;
 			profile.repos = githubRepos;
 
-			return profile;
+			store.dispatch(userProfileSuccess(profile));
+
+			return;
 		});
 	});
 }

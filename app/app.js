@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import router from './router';
 require('es6-promise').polyfill();
-
-import Router from './router';
 
 //let path = require('path');
 
-ReactDom.render(Router, document.getElementById('root'));
+ReactDom.render(
+	<Provider store={store}>{router}</Provider>, 
+	document.getElementById('root')
+);

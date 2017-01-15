@@ -1,17 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
+import SearchFormContainer from '../containers/search-form-container';
 
 export default function(props) {
 	return (
 		<div className="search">
 			<header className="search-header">
-				[Search title]
+				{props.title}
+				<SearchFormContainer searchType={props.searchType} />
 			</header>
 			<div className="search-results">
 				{props.children}
 			</div>
 			<footer className="search-footer">
-				[Total results]
+				{props.totalResults} Results
 			</footer>
 		</div>			
 	);
